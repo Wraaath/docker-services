@@ -8,4 +8,4 @@ services:
       - JELLYFIN_SERVER_ADDRESS=${jellyfin_server_address}
       - JELLYFIN_AUTHENTICATION_USERNAME=${jellyfin_auth_user}
       - JELLYFIN_AUTHENTICATION_PASSWORD=${jellyfin_auth_pass}
-    image: "ghcr.io/manuel-rw/jellyfin-discord-music-bot@sha256:3db40815a3b67f945f670acd53072ce3f3efca1b86bfb00bffa090bb5ff3abcd"
+    image: "ghcr.io/manuel-rw/jellyfin-discord-music-bot:test-max-item-length"
