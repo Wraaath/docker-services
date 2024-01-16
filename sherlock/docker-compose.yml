@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  sherlock:
+    build: .
+    volumes:
+      - "/mnt/truenas/Temp:/opt/sherlock/results"
