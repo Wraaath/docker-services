@@ -1,20 +1,3 @@
-version: '3.7'
-services:
-  cloudflared:
-    image: visibilityspots/cloudflared:v2023.10.0
-    container_name: cloudflared
-    ports:
-      - "5054:5054/tcp"
-      - "5054:5054/udp"
-    environment:
-      - TZ=Europe/Copenhagen
-      - PORT=5054
-      - ADDRESS=0.0.0.0
-    restart: always
-    networks:
-      dns-net:
-        ipv4_address: 172.20.0.2
-
   pihole:
     container_name: pihole
     image: pihole/pihole:2023.10.0
@@ -26,7 +9,7 @@ services:
       - "8443:443/tcp"
     environment:
       - TZ=Europe/Copenhagen
-      - PIHOLE_DNS_=172.20.0.2#5054;1.1.1.1 # referencing by name results in "Invalid IP detected in PIHOLE_DNS_: cloudflared#5054"
+      - PIHOLE_DNS_=1.1.1.1;8.8.8.8 # referencing by name results in "Invalid IP detected in PIHOLE_DNS_: cloudflared#5054"
       - WEBPASSWORD=${PIHOLE_PW}
       - REV_SERVER=true
       - REV_SERVER_TARGET=${PIHOLE_ROUTER_IP}
@@ -38,17 +21,9 @@ services:
       #- 1.1.1.1 # Backup server
     volumes: # store your data between container upgrades
       - "./config:/etc/pihole/"
-      - "/etc/dnsmasq.d/:/etc/dnsmasq.d/"
+      - "./config:/etc/dnsmasq.d/"
     cap_add:
       - NET_ADMIN # Recommended but not required (DHCP needs NET_ADMIN) https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    depends_on:
-      - "cloudflared"
     restart: always
     networks:
       - dns-net
-
-networks:
-  dns-net:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
