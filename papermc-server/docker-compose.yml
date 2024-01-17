@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  minecraft:
+    image: "marctv/minecraft-papermc-server@sha256:ddc3ac5902d02ea03ee4d8c95362a33970ec17bfefa25840266b52125687ecef"
+    restart: always
+    container_name: "papermc-server"
+    environment:
+      MEMORYSIZE: "12G"
+      PAPERMC_FLAGS: ""
+      TZ: Europe/Copenhagen
+    volumes:
+      - "./data:/data:rw"
+    ports:
+      - "25565:25565"
+    # The following allow `docker attach minecraft` to work
+    stdin_open: true
+    tty: true

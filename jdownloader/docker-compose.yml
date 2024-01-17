@@ -1,0 +1,29 @@
+version: '3'
+services:
+  jdownloader-2:
+    restart: unless-stopped
+    image: jlesage/jdownloader-2:v23.12.2
+    networks:
+      - proxy
+    ports:
+      - "5800:5800"
+    volumes:
+      - ./config:/config:rw
+      - /mnt/truenas-nfs/Temp:/output:rw
+    labels:
+        - traefik.enable=true
+        - traefik.docker.network=proxy
+        - traefik.http.middlewares.redirect-https.redirectScheme.scheme=https
+        - traefik.http.middlewares.redirect-https.redirectScheme.permanent=true
+        - traefik.http.routers.jdownloader-https.rule=Host(`jdownloader.l.wraaath.com`)
+        - traefik.http.routers.jdownloader-https.entrypoints=https
+        - traefik.http.routers.jdownloader-https.tls=true
+        - traefik.http.routers.jdownloader-https.service=jdownloader
+        - traefik.http.routers.jdownloader-http.rule=Host(`jdownloader.l.wraaath.com`)
+        - traefik.http.routers.jdownloader-http.entrypoints=http
+        - traefik.http.routers.jdownloader-http.middlewares=redirect-https
+        - traefik.http.routers.jdownloader-http.service=jdownloader
+        - traefik.http.services.jdownloader.loadbalancer.server.port=80
+networks:
+  proxy:
+    external: true

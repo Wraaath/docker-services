@@ -1,0 +1,36 @@
+# Need help? https://github.com/binhex/documentation/blob/master/docker/guides/vpn.md
+
+version: '2.2'
+services:
+ qbittorrent:
+  image: binhex/arch-qbittorrentvpn:4.5.5-1-04
+  privileged: true # Needed for Wireguard
+  devices:
+    - /dev/net/tun
+  ports:
+    - "6881:6881"
+    - "6881:6881/udp"
+    - "8181:8181" # HAVE TO CHANGE BOTH SIDES AND WEBUI_PORT below 
+    - "8118:8118"
+  sysctls:
+    - net.ipv4.conf.all.src_valid_mark=1 # Needed for Wireguard
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./config:/config
+    - ./data:/data
+    - /mnt/truenas-nfs:/truenas
+  environment:
+    - DEBUG=true # Helps with permission issues and such. Find logs at ./config/supervisord.log on host
+    - PUID=0
+    - PGID=0
+    - UMASK=000
+    - VPN_ENABLED=yes
+    - VPN_PROV=custom
+    - VPN_CLIENT=wireguard
+    - VPN_USER= # Pub/priv key embedded in my Wireguard config
+    - VPN_PASS= # These are usually email:pass from your provider tho
+    - STRICT_PORT_FORWARD=no # PIA users only
+    - ENABLE_PRIVOXY=no
+    - WEBUI_PORT=8181 # 8080 usually taken
+    - LAN_NETWORK=192.168.0.0/24 # NOT IP OF ROUTER/GATEWAY
+  restart: unless-stopped

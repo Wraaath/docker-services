@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  searxng:
+    image: searxng/searxng:2023.7.1-5720844f
+    container_name: searxng
+    restart: unless-stopped
+    volumes:
+      - ./config:/etc/searxng
+    environment:
+      - TZ=Europe/Copenhagen
+    ports:
+      - 8880:8080
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.searxng.entrypoints=http"
+      - "traefik.http.routers.searxng.rule=Host(`searxng.wraaath.com`)"
+      - "traefik.http.middlewares.searxng-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.searxng.middlewares=searxng-https-redirect"
+      - "traefik.http.routers.searxng-secure.entrypoints=https"
+      - "traefik.http.routers.searxng-secure.rule=Host(`searxng.wraaath.com`)"
+      - "traefik.http.routers.searxng-secure.tls=true"
+      - "traefik.http.routers.searxng-secure.service=searxng"
+      - "traefik.http.services.searxng.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+
+networks:
+  proxy:
+    external: true
