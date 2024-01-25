@@ -2,7 +2,7 @@ version: '3'
 services:
   jdownloader-2:
     restart: unless-stopped
-    image: jlesage/jdownloader-2:v23.12.2
+    image: jlesage/jdownloader-2:v24.01.1
     networks:
       - proxy
     ports:
