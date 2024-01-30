@@ -1,27 +1,25 @@
+# TODO: figure out what can be pushed
+
 # General
 .env
-
+!env.example
 
 # traefik/
-acme.json
-
+/traefik/data/*
+!/traefik/data/traefik.yml
 
 # vaultwarden/
 /vaultwarden/data/*
 
-
 # qbittorrent-vpn/
 /qbittorrent-vpn/config/*
 /qbittorrent-vpn/config/qBittorrent/config/categories.json
-
 !/qbittorrent-vpn/config/perms.txt
 !/qbittorrent-vpn/config/wireguard/wg0.conf.example
 !/qbittorrent-vpn/config/qBittorrent/config/qBittorrent.conf
 
-
 # papermc-server/
 /papermc-server/data/*
-
 !/papermc-server/data/eula.txt
 !/papermc-server/data/commands.yml
 !/papermc-server/data/server.properties
@@ -30,23 +28,18 @@ acme.json
 !/papermc-server/data/permissions.yml
 !/papermc-server/data/spigot.yml
 
-
 # homeassistant/
 /homeassistant/config/*
-
 !/homeassistant/config/configuration.yaml
 !/homeassistant/config/automations.yaml
-
 
 # jdownloader/
 /jdownloader/config/*
 # TODO: add the manual dark theme thingy from Reddit
 
-
 # searxng/
 /searxng/config/*
 # TODO: actually figure out what can be pushed
-
 
 # authelia/
 /authelia/config/*
@@ -57,4 +50,5 @@ acme.json
 # wgeasy/
 /wgeasy/config/*
 
-# TODO: actually figure out what can be pushed
+# wirehole/
+!/wirehole/config/unbound/unbound.conf
