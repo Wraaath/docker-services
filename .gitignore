@@ -47,9 +47,5 @@
 # uptimekuma/
 /uptimekuma/data/*
 
-# wgeasy/
-/wgeasy/config/*
-
-# wirehole/
-/wirehole/config/*
-!/wirehole/config/unbound/unbound.conf
+# wgeasy-pihole-unbound/
+/wgeasy-pihole-unbound/config
