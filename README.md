@@ -14,7 +14,6 @@ Because I, contrary to popular belief, don't actually hate myself.
 * [Jellyfin Bot](jellyfin-bot/)
 * [Nextcloud AIO](nextcloud-aio/)
 * [PaperMC Server](papermc-server/)
-* [Pihole](pihole/)
 * [qBittorrent VPN](qbittorrent-vpn/)
 * [SearXNG](searxng/)
 * [Sherlock](sherlock/)
@@ -23,7 +22,7 @@ Because I, contrary to popular belief, don't actually hate myself.
 * [UptimeKuma](uptimekuma/)
 * [Vaultwarden](vaultwarden/)
 * [Website](website/)
-* [WGEasy](wgeasy/)
+* [WGEasy + Pihole + Unbound](wgeasy-pihole-unbound/)
 
 ## 🚀 Deployment
 1. Make sure you have Docker/docker-compose installed
