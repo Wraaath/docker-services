@@ -32,7 +32,7 @@ services:
 
   pihole-unbound:
     container_name: pihole-unbound
-    image: rlabinc/pihole-unbound@sha256:6bada19677a01ddc3ba4015c9393455f211690da454e9962a01446eeee32f7fa
+    image: rlabinc/pihole-unbound@sha256:e96197734199d8d40043c323a50434311adbebf3796b05c42ab21c03ae9efa18
     hostname: pihole
     domainname: pihole.local
     ports:
