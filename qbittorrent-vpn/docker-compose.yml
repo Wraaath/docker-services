@@ -3,7 +3,7 @@
 version: '2.2'
 services:
  qbittorrent:
-  image: binhex/arch-qbittorrentvpn:4.5.5-1-04
+  image: binhex/arch-qbittorrentvpn@sha256:996110c84d8c9ed427a996b811eddfc46f23dbbc7a9da9e7b892f9ba3d918ebc
   privileged: true # Needed for Wireguard
   devices:
     - /dev/net/tun
