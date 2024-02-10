@@ -54,4 +54,4 @@ sudo docker compose logs -f
 
 * Consult the official project's page. See `<service>/README.md`
 
-* Submit a [PR](https://github.com/wraaath-homelab/docker-services/pulls) or an [Issue](https://github.com/wraaath-homelab/docker-services/issues) to the repo. And I'll try to help.
+* Submit a ["Pull Request"](https://github.com/wraaath-homelab/docker-services/pulls) or an ["Issue"](https://github.com/wraaath-homelab/docker-services/issues) to the repo. And I'll try to help.
