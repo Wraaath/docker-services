@@ -14,8 +14,7 @@ services:
     dns:
       - 10.8.1.3
     networks:
-      wgeasy-pihole-unbound_wgeasy:
-        ipv4_address: 10.8.1.4
+      - wgeasy-pihole-unbound_wgeasy
 
 networks:
   wgeasy-pihole-unbound_wgeasy:
