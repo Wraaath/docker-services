@@ -2,24 +2,22 @@ version: "3.7"
 
 services:
   wgeasy:
-    environment:
-      # ⚠️ Change the server's hostname (clients will connect to):
-      - WG_HOST=${PUBLIC_IP}
-
-      # ⚠️ Change the Web UI Password:
-      - PASSWORD=${WGEASY_PASS}
-
-      # 💡 This is the Pi-Hole Container's IP Address
-      - WG_DEFAULT_DNS=10.8.1.3
-      - WG_DEFAULT_ADDRESS=10.8.0.x
+    container_name: wgeasy
+    hostname: wgeasy
     image: ghcr.io/wg-easy/wg-easy:10
-    container_name: wg-easy
+    env_file: .env
+    restart: unless-stopped
+    environment:
+      - TZ: Europe/Copenhagen
+      - WG_HOST: ${PUBLIC_IP}
+      - PASSWORD: ${WGEASY_PASS}
+      - WG_DEFAULT_DNS: 10.8.1.3
+      - WG_DEFAULT_ADDRESS: 10.8.0.x
     volumes:
       - ./config/wgeasy:/etc/wireguard
     ports:
-      - "51820:51820/udp"
-      - "51821:51821/tcp"
-    restart: unless-stopped
+      - 51820:51820/udp
+      - 51821:51821/tcp
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -32,17 +30,13 @@ services:
 
   pihole-unbound:
     container_name: pihole-unbound
-    image: rlabinc/pihole-unbound@sha256:e96197734199d8d40043c323a50434311adbebf3796b05c42ab21c03ae9efa18
     hostname: pihole
     domainname: pihole.local
-    ports:
-      - 443:443/tcp
-      - 53:53/tcp
-      - 53:53/udp
-      - 8080:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
-      - 5335:5335/tcp # Uncomment to enable unbound access on local server
-      # - 22/tcp # Uncomment to enable SSH
+    image: rlabinc/pihole-unbound@sha256:e96197734199d8d40043c323a50434311adbebf3796b05c42ab21c03ae9efa18
+    env_file: .env
+    restart: unless-stopped
     environment:
+      - TZ: Europe/Copenhagen
       - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${PIHOLE_PASS}
@@ -57,7 +51,12 @@ services:
     volumes:
       - ./config/pihole/etc_pihole-unbound:/etc/pihole:rw
       - ./config/pihole/etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
-    restart: unless-stopped
+    ports:
+      - 443:443/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      - 8080:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
+      - 5335:5335/tcp # Uncomment to enable unbound access on local server
     networks:
       wgeasy:
         ipv4_address: 10.8.1.3

@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  <service_name>:
+    container_name: <container_name>
+    hostname: <hostname>
+    image: <user/image:tag>
+    env_file: .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ: Europe/Copenhagen
+      - PUID: 1000
+      - PGID: 1000
+      - <environment_variable>: <value>
+      - <environment_variable2>: ${ENV_VAR}
+    volumes:
+      - ./data/<service>:/data:rw
+      - ./config/<service>:/config:ro
+    networks:
+      - proxy
+    ports:
+      - 69:69/tcp
+      - 6969:6969/udp
+
+networks:
+  proxy:
+    external: true
