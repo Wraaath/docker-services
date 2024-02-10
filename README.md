@@ -4,7 +4,7 @@
 These are the services and applications running in my Homelab. \
 This mf is very much a work in progress, so don't judge too hard.
 
-## 📚 Sections
+# 📚 Sections
 * [.template](.template/)
 * [Authelia](authelia/)
 * [Cloudflare DDNS](cloudflare-ddns/)
@@ -22,7 +22,7 @@ This mf is very much a work in progress, so don't judge too hard.
 * [Website](website/)
 * [WGEasy + Pihole + Unbound](wgeasy-pihole-unbound/)
 
-## 🚀 Deployment
+# 🚀 Deployment
 1. Make sure you have Docker/docker-compose installed
 Install with your Linux distro's package-manager or head over to [Dockers homepage](https://www.docker.com/get-started/) to install on Windows.
 
@@ -44,7 +44,7 @@ sudo docker-compose up -d
 
 ---
 
-### Problems?
+## Problems?
 * Read the `<service>/README.md`
 
 * Check the logs:
