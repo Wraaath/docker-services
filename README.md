@@ -24,7 +24,7 @@ This mf is very much a work in progress, so don't judge too hard.
 
 # 🚀 Deployment
 1. Make sure you have Docker/docker-compose installed
-Install with your Linux distro's package-manager or head over to [Dockers homepage](https://www.docker.com/get-started/) to install on Windows.
+See my [Ubuntu guide](https://github.com/wraaath-homelab/docker-services/wiki/Docker#ubuntu-install-compose-v2) or [Raspberry Pi OS guide](https://github.com/wraaath-homelab/docker-services/wiki/Docker#raspberry-pi-os-install-compose-v2)
 
 2. Clone the repo:
 ```bash
