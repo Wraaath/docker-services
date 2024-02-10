@@ -4,7 +4,7 @@ services:
   <service_name>:
     container_name: <container_name>
     hostname: <hostname>
-    image: <user/image:tag>
+    image: <platform/user/image:tag>
     env_file: .env
     restart: unless-stopped
     security_opt:
@@ -16,8 +16,8 @@ services:
       - <environment_variable>: <value>
       - <environment_variable2>: ${ENV_VAR}
     volumes:
-      - ./data/<service>:/data:rw
-      - ./config/<service>:/config:ro
+      - ./data/<service>:/<container_path>:rw
+      - ./config/<service>:/<container_path>:ro
     networks:
       - proxy
     ports:
