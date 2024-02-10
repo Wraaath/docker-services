@@ -39,7 +39,7 @@ vim .env
 
 4. Deploy the Docker-container from the compose file:
 ```bash
-sudo docker-compose up -d
+sudo docker compose up -d
 ```
 
 ---
@@ -49,7 +49,7 @@ sudo docker-compose up -d
 
 * Check the logs:
 ```bash
-sudo docker-compose logs -f
+sudo docker compose logs -f
 ```
 
 * Consult the official project's page. See `<service>/README.md`
