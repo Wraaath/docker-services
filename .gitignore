@@ -49,3 +49,6 @@
 
 # wgeasy-pihole-unbound/
 /wgeasy-pihole-unbound/config
+
+# cloudflare-ddns
+/cloudflare-ddns/config/config.json
