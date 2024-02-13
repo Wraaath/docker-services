@@ -1,14 +1,19 @@
 version: '3.7'
+
 services:
   cloudflare-ddns:
-    image: timothyjmiller/cloudflare-ddns@sha256:197aaf6facf0beb4bd14613e295ad8ea0bc19f89d5bd9d619e4ac3796610b16d
     container_name: cloudflare-ddns
+    hostname: cloudflare-ddns.local
+    image: timothyjmiller/cloudflare-ddns@sha256:197aaf6facf0beb4bd14613e295ad8ea0bc19f89d5bd9d619e4ac3796610b16d
+    env_file: .env
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    network_mode: 'host'
     environment:
-      - PUID=1000
-      - PGID=1000
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
     volumes:
-      - ./config/config.json:/config.json
-    restart: unless-stopped
+      - ./config/config.json:/config.json:ro
+    networks:
+      - host

@@ -23,6 +23,8 @@ services:
     ports:
       - 69:69/tcp
       - 6969:6969/udp
+    labels:
+      - <label>=<value>
 
 networks:
   proxy:
