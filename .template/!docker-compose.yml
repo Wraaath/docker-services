@@ -10,11 +10,11 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ: Europe/Copenhagen
-      - PUID: 1000
-      - PGID: 1000
-      - <environment_variable>: <value>
-      - <environment_variable2>: ${ENV_VAR}
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
+        <environment_variable>: <value>
+        <environment_variable2>: ${ENV_VAR}
     volumes:
       - ./data/<service>:/<container_path>:rw
       - ./config/<service>:/<container_path>:ro
