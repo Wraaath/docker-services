@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   apache:
-    image: httpd:alpine3.18@sha256:ecf19d91df773a43b1df424b77dfe42e992129de74919ce40f764f57e1f1fe85
+    image: httpd:alpine3.18@sha256:9926d2e1a82b13f28b6b9c720bb6947b34c8eabc943de113a3fbc8fabee82d94
     restart: unless-stopped
     container_name: website
     networks:
