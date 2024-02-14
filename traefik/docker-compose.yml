@@ -4,7 +4,7 @@ services:
   traefik:
     container_name: traefik
     hostname: traefik.local
-    image: traefik:v3.0
+    image: docker.io/traefik:v3.0
     env_file: .env
     restart: unless-stopped
     security_opt:

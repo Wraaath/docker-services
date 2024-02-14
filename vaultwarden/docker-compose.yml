@@ -1,26 +1,32 @@
-version: '3'
+version: "3"
 
 services:
   vaultwarden:
-    restart: unless-stopped
     container_name: vaultwarden
-    image: vaultwarden/server:1.30.3-alpine
+    hostname: vaultwarden.local
+    image: docker.io/vaultwarden/server:1.30.3-alpine
+    env_file: .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
+        LOGIN_RATELIMIT_MAX_BURST: 10
+        LOGIN_RATELIMIT_SECONDS: 60
+        DOMAIN: "https://vaultwarden.wraaath.com"
+        INVITATIONS_ALLOWED: "true"
+        ADMIN_TOKEN: ${ADMIN_TOKEN}
+        EMERGENCY_ACCESS_ALLOWED: "true"
+        SENDS_ALLOWED: "true"
+        WEB_VAULT_ENABLED: "true"
     volumes:
-      - ./data/:/data/
+      - ./data/:/data/:rw
     networks:
       - proxy
     ports:
       - 8062:80
-    environment:
-      - TZ=Europe/Copenhagen
-      - LOGIN_RATELIMIT_MAX_BURST=10
-      - LOGIN_RATELIMIT_SECONDS=60
-      - DOMAIN=https://vaultwarden.wraaath.com
-      - INVITATIONS_ALLOWED=true
-      - ADMIN_TOKEN=${ADMIN_TOKEN}
-      - EMERGENCY_ACCESS_ALLOWED=true
-      - SENDS_ALLOWED=true
-      - WEB_VAULT_ENABLED=true
     labels:
         - traefik.enable=true
         - traefik.docker.network=proxy
@@ -35,6 +41,7 @@ services:
         - traefik.http.routers.vaultwarden-http.middlewares=redirect-https
         - traefik.http.routers.vaultwarden-http.service=vaultwarden
         - traefik.http.services.vaultwarden.loadbalancer.server.port=80
+
 networks:
   proxy:
     external: true

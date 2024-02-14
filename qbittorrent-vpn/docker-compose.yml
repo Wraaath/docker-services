@@ -4,7 +4,7 @@ services:
  qbittorrent-vpn:
   container_name: qbittorrent-vpn
   hostname: qbittorrent-vpn.local
-  image: binhex/arch-qbittorrentvpn@sha256:996110c84d8c9ed427a996b811eddfc46f23dbbc7a9da9e7b892f9ba3d918ebc
+  image: docker.io/binhex/arch-qbittorrentvpn@sha256:996110c84d8c9ed427a996b811eddfc46f23dbbc7a9da9e7b892f9ba3d918ebc
   env_file: .env
   restart: unless-stopped
   privileged: true # Needed for Wireguard
