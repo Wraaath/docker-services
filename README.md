@@ -42,7 +42,7 @@ vim .env
 sudo docker network create proxy
 ```
 
-4. Deploy the Docker-container from the compose file:
+5. Deploy the Docker-container from the compose file:
 ```bash
 sudo docker compose up -d
 ```
