@@ -1,17 +1,29 @@
 version: "3.9"
+
 services:
-  minecraft:
-    image: "marctv/minecraft-papermc-server@sha256:f74cff4b6fb6a7cc0e2d82977486eb7210e765b506a96a93893a474a38127e1a"
-    restart: always
-    container_name: "papermc-server"
+  papermc-server:
+    container_name: papermc-server
+    hostname: papermc-server.local
+    image: docker.io/marctv/minecraft-papermc-server@sha256:f74cff4b6fb6a7cc0e2d82977486eb7210e765b506a96a93893a474a38127e1a
+    env_file: .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     environment:
+      TZ: Europe/Copenhagen
+      PUID: 1000
+      PGID: 1000
       MEMORYSIZE: "12G"
       PAPERMC_FLAGS: ""
-      TZ: Europe/Copenhagen
+    networks:
+      - proxy
     volumes:
-      - "./data:/data:rw"
+      - ./data:/data:rw
     ports:
       - "25565:25565"
-    # The following allow `docker attach minecraft` to work
     stdin_open: true
     tty: true
+
+networks:
+  proxy:
+    external: true

@@ -59,6 +59,8 @@ players:
   disable-saving: false
 world-settings:
   default:
+    seed-trailruins: 83469867
+    seed-trialchambers: 94251327
     below-zero-generation-in-existing-chunks: true
     merge-radius:
       item: 2.5

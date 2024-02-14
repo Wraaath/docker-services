@@ -1,16 +1,25 @@
 version: "2.1"
+
 services:
   homeassistant:
-    image: lscr.io/linuxserver/homeassistant:2024.1.6
     container_name: homeassistant
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Copenhagen
-    volumes:
-      - ./config:/config
-    ports:
-      - 8123:8123 #optional
-    #devices:
-    #  - /path/to/device:/path/to/device #optional
+    hostname: homeassistant.local
+    image: lscr.io/linuxserver/homeassistant:2024.1.6
+    env_file: .env
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
+    volumes:
+      - ./config:/config:rw
+    networks:
+      - proxy
+    ports:
+      - 8123:8123
+
+networks:
+  proxy:
+    external: true

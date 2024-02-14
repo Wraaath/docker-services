@@ -1,36 +1,38 @@
-# Need help? https://github.com/binhex/documentation/blob/master/docker/guides/vpn.md
+version: "2.2"
 
-version: '2.2'
 services:
- qbittorrent:
+ qbittorrent-vpn:
+  container_name: qbittorrent-vpn
+  hostname: qbittorrent-vpn.local
   image: binhex/arch-qbittorrentvpn@sha256:996110c84d8c9ed427a996b811eddfc46f23dbbc7a9da9e7b892f9ba3d918ebc
+  env_file: .env
+  restart: unless-stopped
   privileged: true # Needed for Wireguard
-  devices:
-    - /dev/net/tun
-  ports:
-    - "6881:6881"
-    - "6881:6881/udp"
-    - "8181:8181" # HAVE TO CHANGE BOTH SIDES AND WEBUI_PORT below 
-    - "8118:8118"
   sysctls:
     - net.ipv4.conf.all.src_valid_mark=1 # Needed for Wireguard
-  volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - ./config:/config
-    - ./data:/data
-    - /mnt/truenas-nfs:/truenas
+  devices:
+    - /dev/net/tun
   environment:
-    - DEBUG=true # Helps with permission issues and such. Find logs at ./config/supervisord.log on host
-    - PUID=0
-    - PGID=0
-    - UMASK=000
-    - VPN_ENABLED=yes
-    - VPN_PROV=custom
-    - VPN_CLIENT=wireguard
-    - VPN_USER= # Pub/priv key embedded in my Wireguard config
-    - VPN_PASS= # These are usually email:pass from your provider tho
-    - STRICT_PORT_FORWARD=no # PIA users only
-    - ENABLE_PRIVOXY=no
-    - WEBUI_PORT=8181 # 8080 usually taken
-    - LAN_NETWORK=192.168.0.0/24 # NOT IP OF ROUTER/GATEWAY
-  restart: unless-stopped
+      TZ: Europe/Copenhagen
+      PUID: 1000
+      PGID: 1000
+      DEBUG: "true" # Helps with permission issues and such. Find logs at ./config/supervisord.log on host
+      UMASK: 000
+      NAME_SERVERS: 1.1.1.1
+      VPN_ENABLED: "yes"
+      VPN_PROV: "custom"
+      VPN_CLIENT: "wireguard"
+      VPN_USER: # Pub/priv key embedded in my Wireguard config
+      VPN_PASS: # These are usually email:pass from your provider tho
+      STRICT_PORT_FORWARD: "no" # PIA users only
+      ENABLE_PRIVOXY: "no"
+      WEBUI_PORT: 8181 # 8080 usually taken
+      LAN_NETWORK: 192.168.0.0/24 # NOT IP OF ROUTER/GATEWAY
+  volumes:
+    - ./config:/config
+    - /mnt/truenas-nfs:/truenas
+  ports:
+    - 6881:6881
+    - 6881:6881/udp
+    - 8181:8181 # HAVE TO CHANGE BOTH SIDES AND WEBUI_PORT below 
+    - 8118:8118

@@ -1,15 +1,25 @@
-version: '3'
+version: "3"
+
 services:
-  jdownloader-2:
-    restart: unless-stopped
+  jdownloader:
+    container_name: jdownloader
+    hostname: jdownloader.local
     image: docker.io/jlesage/jdownloader-2:v24.01.1
-    networks:
-      - proxy
-    ports:
-      - "5800:5800"
+    env_file: .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
     volumes:
       - ./config:/config:rw
       - /mnt/truenas-nfs/Temp:/output:rw
+    networks:
+      - proxy
+    ports:
+      - 5800:5800
     labels:
         - traefik.enable=true
         - traefik.docker.network=proxy
@@ -24,6 +34,8 @@ services:
         - traefik.http.routers.jdownloader-http.middlewares=redirect-https
         - traefik.http.routers.jdownloader-http.service=jdownloader
         - traefik.http.services.jdownloader.loadbalancer.server.port=80
+        - traefik.http.routers.jdownloader-secure.middlewares=authelia@docker
+
 networks:
   proxy:
     external: true
