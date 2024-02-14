@@ -37,6 +37,11 @@ cp .env.example .env
 vim .env
 ```
 
+4. Create the `proxy` network for Traefik, Authelia etc...
+```bash
+sudo docker network create proxy
+```
+
 4. Deploy the Docker-container from the compose file:
 ```bash
 sudo docker compose up -d
