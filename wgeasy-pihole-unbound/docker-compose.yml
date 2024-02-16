@@ -8,11 +8,11 @@ services:
     env_file: .env
     restart: unless-stopped
     environment:
-      - TZ: Europe/Copenhagen
-      - WG_HOST: ${PUBLIC_IP}
-      - PASSWORD: ${WGEASY_PASS}
-      - WG_DEFAULT_DNS: 10.8.1.3
-      - WG_DEFAULT_ADDRESS: 10.8.0.x
+      TZ: Europe/Copenhagen
+      WG_HOST: ${PUBLIC_IP}
+      PASSWORD: ${WGEASY_PASS}
+      WG_DEFAULT_DNS: 10.8.1.3
+      WG_DEFAULT_ADDRESS: 10.8.0.x
     volumes:
       - ./config/wgeasy:/etc/wireguard
     ports:
@@ -26,7 +26,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     networks:
       wgeasy:
-        ipv4_address: 10.8.1.2
+        ipv4_address: 10.8.1.5
 
   pihole-unbound:
     container_name: pihole-unbound
@@ -36,18 +36,17 @@ services:
     env_file: .env
     restart: unless-stopped
     environment:
-      - TZ: Europe/Copenhagen
-      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
-      - TZ=Europe/Copenhagen
-      - WEBPASSWORD=${PIHOLE_PASS}
-      - WEBTHEME=default-dark
-      - REV_SERVER=true
-      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
-      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
-      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
-      - PIHOLE_DNS_=127.0.0.1#5335
-      - DNSSEC="true"
-      - DNSMASQ_LISTENING=all
+      TZ: Europe/Copenhagen
+      FTLCONF_LOCAL_IPV4: ${FTLCONF_LOCAL_IPV4}
+      WEBPASSWORD: ${PIHOLE_PASS}
+      WEBTHEME: default-dark
+      REV_SERVER: "true"
+      REV_SERVER_TARGET: ${REV_SERVER_TARGET}
+      REV_SERVER_DOMAIN: ${REV_SERVER_DOMAIN}
+      REV_SERVER_CIDR: ${REV_SERVER_CIDR}
+      PIHOLE_DNS_: 127.0.0.1#5335
+      DNSSEC: "true"
+      DNSMASQ_LISTENING: "all"
     volumes:
       - ./config/pihole/etc_pihole-unbound:/etc/pihole:rw
       - ./config/pihole/etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
