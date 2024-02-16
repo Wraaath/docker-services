@@ -41,3 +41,17 @@ Why the need for Unbound? What does it do differently than a regular upstrema DN
 
 ---
 So what you are getting is enhanced privacy, for the tradeoff of a slower inital resolve. By avoiding a centralised DNS server for all your resolves, no DNS authority can fully log the exact path you're visiting.
+
+### Fix
+```
+sudo sed -r -i.orig 's/#?DNSStubListener=yes/DNSStubListener=no/g' /etc/systemd/resolved.conf
+```
+```
+sudo sh -c 'rm /etc/resolv.conf && ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf'
+```
+
+Then edit `/etc/resolvconf.conf`
+
+```
+systemctl restart systemd-resolved
+```
