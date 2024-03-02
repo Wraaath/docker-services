@@ -13,6 +13,7 @@ services:
         TZ: Europe/Copenhagen
         PUID: 1000
         PGID: 1000
+        DARK_MODE: 1
     volumes:
       - ./config:/config:rw
       - /mnt/truenas-nfs/Temp:/output:rw

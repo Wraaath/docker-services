@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  filebot:
+    container_name: filebot
+    hostname: filebot.local
+    image: docker.io/jlesage/filebot:latest
+    env_file: .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+        TZ: Europe/Copenhagen
+        PUID: 1000
+        PGID: 1000
+        DARK_MODE: 1
+    volumes:
+      - ./config:/config
+      - /mnt/truenas-nfs:/truenas
+    ports:
+      - 5900:5800

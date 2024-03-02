@@ -52,3 +52,6 @@
 
 # cloudflare-ddns
 /cloudflare-ddns/config/config.json
+
+# filebot
+/filebot/config/
