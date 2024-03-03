@@ -4,7 +4,7 @@ services:
   vaultwarden:
     container_name: vaultwarden
     hostname: vaultwarden.local
-    image: docker.io/vaultwarden/server:1.30.3-alpine
+    image: docker.io/vaultwarden/server:1.30.5-alpine
     env_file: .env
     restart: unless-stopped
     security_opt:
