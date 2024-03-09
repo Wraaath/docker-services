@@ -1,1 +1,20 @@
-[]
+- id: '1709589861980'
+  alias: Ceiling toggle
+  description: ''
+  trigger:
+  - device_id: 32bb186fd4d39c1b84f40a45dfcca89f
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 1
+    unique_id: 4667ce81-f71b-43fa-8664-6615d61c04b0
+  condition: []
+  action:
+  - service: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      area_id: wraaath_room
+      device_id: fd0d3d478418802471979f9fa54df943
+      entity_id: light.ceiling
+  mode: single
