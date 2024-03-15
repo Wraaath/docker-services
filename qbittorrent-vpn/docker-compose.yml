@@ -4,7 +4,7 @@ services:
  qbittorrent-vpn:
   container_name: qbittorrent-vpn
   hostname: qbittorrent-vpn.local
-  image: docker.io/binhex/arch-qbittorrentvpn@sha256:1c0d02fab033d7b84eef15036d60bf6db092a9cf410d9570dfc76e258a4104ab
+  image: docker.io/binhex/arch-qbittorrentvpn:4.6.3-1-02
   env_file: .env
   restart: unless-stopped
   privileged: true # Needed for Wireguard
@@ -31,6 +31,7 @@ services:
   volumes:
     - ./config:/config
     - /mnt/truenas-nfs:/truenas
+    - ./theme/nightwalker:/opt/nightwalker # Dark theme for v4.5 https://github.com/CallMeBruce/nightwalker
   ports:
     - 6881:6881
     - 6881:6881/udp

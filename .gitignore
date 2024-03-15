@@ -13,6 +13,7 @@
 
 # qbittorrent-vpn/
 /qbittorrent-vpn/config/*
+/qbittorrent-vpn/theme/*
 /qbittorrent-vpn/config/qBittorrent/config/categories.json
 !/qbittorrent-vpn/config/perms.txt
 !/qbittorrent-vpn/config/wireguard/wg0.conf.example
@@ -35,7 +36,6 @@
 
 # jdownloader/
 /jdownloader/config/*
-# TODO: add the manual dark theme thingy from Reddit
 
 # searxng/
 /searxng/config/*
