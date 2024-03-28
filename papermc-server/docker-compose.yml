@@ -4,7 +4,7 @@ services:
   papermc-server:
     container_name: papermc-server
     hostname: papermc-server.local
-    image: docker.io/marctv/minecraft-papermc-server@sha256:bcbfbec3083ef00a01a9d5de4ca0fc17a2d4830e7cbbf8e6330abe15800eb123
+    image: docker.io/marctv/minecraft-papermc-server@sha256:c57a2384aeaaf75f44bbdac156c7750e496f21aa085ef0ca77322ce7c4b9c7d2
     env_file: .env
     restart: unless-stopped
     security_opt:
