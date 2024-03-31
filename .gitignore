@@ -20,14 +20,8 @@
 !/qbittorrent-vpn/config/qBittorrent/config/qBittorrent.conf
 
 # papermc-server/
-/papermc-server/data/*
-!/papermc-server/data/eula.txt
-!/papermc-server/data/commands.yml
-!/papermc-server/data/server.properties
-!/papermc-server/data/version_history.json
-!/papermc-server/data/bukkit.yml
-!/papermc-server/data/permissions.yml
-!/papermc-server/data/spigot.yml
+/fabricmc-server/data/*
+!/fabricmc-server/data/SP
 
 # homeassistant/
 /homeassistant/config/*

@@ -12,7 +12,7 @@ This mf is very much a work in progress, so don't judge too hard.
 * [JDownloader](jdownloader/)
 * [Jellyfin Bot](jellyfin-bot/)
 * [Nextcloud AIO](nextcloud-aio/)
-* [PaperMC Server](papermc-server/)
+* [FabricMC Server](fabricmc-server/)
 * [qBittorrent VPN](qbittorrent-vpn/)
 * [SearXNG](searxng/)
 * [Tor Bridge](tor-bridge/)
