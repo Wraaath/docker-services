@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8088:8088
+      - 44830:44830
+      - 44830:44830/udp # port generated in gluten/info/forwarded_port
+    volumes:
+      - ./data/gluetun:/gluetun
+      - ./data/gluetun/info:/tmp/gluetun
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - TZ=Europe/Copenhagen
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - VPN_PORT_FORWARDING=on
+      - VPN_PORT_FORWARDING_PROVIDER=protonvpn
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/16 # Internal network
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    network_mode: "service:gluetun"
+    environment:
+      - WEBUI_PORT=8088
+      - TZ=Europe/Copenhagen
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./config:/config
+      - /mnt/truenas-nfs:/truenas
+      - ./theme/nightwalker:/opt/nightwalker # Dark theme for v4.5 https://github.com/CallMeBruce/nightwalker
+    depends_on:
+      - gluetun

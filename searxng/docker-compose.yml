@@ -1,15 +1,32 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  searxng:
-    image: searxng/searxng:2023.7.1-5720844f
-    container_name: searxng
-    restart: unless-stopped
+  redis:
+    container_name: redis
+    image: docker.io/library/redis:alpine
+    command: redis-server --save 30 1 --loglevel warning
+    networks:
+      - proxy
     volumes:
-      - ./config:/etc/searxng
+      - redis-data:/data
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+
+  searxng:
+    container_name: searxng
+    image: searxng/searxng:latest
+    hostname: searxng
+    restart: always
+    ports:
+     - "127.0.0.1:9999:8080"
+    volumes:
+      - ./data:/etc/searxng:rw
     environment:
-      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
-      - TZ=Europe/Copenhagen
+      - SEARXNG_BASE_URL=https://search.wraaath.com:-localhost}/
     cap_drop:
       - ALL
     cap_add:
@@ -17,8 +34,6 @@ services:
       - SETGID
       - SETUID
       - DAC_OVERRIDE
-    ports:
-      - 8880:8080
     networks:
       - proxy
     labels:
@@ -26,16 +41,19 @@ services:
         - traefik.docker.network=proxy
         - traefik.http.middlewares.redirect-https.redirectScheme.scheme=https
         - traefik.http.middlewares.redirect-https.redirectScheme.permanent=true
-        - traefik.http.routers.searxng-https.rule=Host(`searxng.wraaath.com`)
-        - traefik.http.routers.searxng-https.entrypoints=https
-        - traefik.http.routers.searxng-https.tls=true
-        - traefik.http.routers.searxng-https.service=searxng
-        - traefik.http.routers.searxng-http.rule=Host(`searxng.wraaath.com`)
-        - traefik.http.routers.searxng-http.entrypoints=http
-        - traefik.http.routers.searxng-http.middlewares=redirect-https
-        - traefik.http.routers.searxng-http.service=searxng
+        - traefik.http.routers.searxng.https.rule=Host(`search.wraaath.com`)
+        - traefik.http.routers.searxng.https.entrypoints=https
+        - traefik.http.routers.searxng.https.tls=true
+        - traefik.http.routers.searxng.https.service=searxng
+        - traefik.http.routers.searxng.http.rule=Host(`search.wraaath.com`)
+        - traefik.http.routers.searxng.http.entrypoints=http
+        - traefik.http.routers.searxng.http.middlewares=redirect-https
+        - traefik.http.routers.searxng.http.service=searxng
         - traefik.http.services.searxng.loadbalancer.server.port=80
 
 networks:
   proxy:
     external: true
+
+volumes:
+  redis-data:

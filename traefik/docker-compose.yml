@@ -2,35 +2,33 @@ version: "3.8"
 
 services:
   traefik:
+    image: traefik:v3.0
     container_name: traefik
-    hostname: traefik.local
-    image: docker.io/traefik:v3.0
-    env_file: .env
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-        TZ: Europe/Copenhagen
-        PUID: 1000
-        PGID: 1000
-        CF_API_EMAIL: ${CF_API_EMAIL}
-        CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN} # API token needs DNS edit and Zone edit
-      # be sure to use the correct one depending on if you are using a token or key
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./data/traefik.yml:/traefik.yml:ro
-      - ./data/acme.json:/acme.json:rw
-      - ./data/config.yml:/config.yml:ro
+    extra_hosts: ["host.docker.internal:host-gateway"]
     networks:
       - proxy
     ports:
-      - 80:80 # for http
-      - 443:443 # for https
+      - 80:80
+      - 443:443/tcp
+      - 443:443/udp # Uncomment if you want HTTP3
+    environment:
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN} # if using .env
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
+    env_file: .env # use .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data/traefik.yml:/traefik.yml:ro
+      - ./data/acme.json:/acme.json
+      - ./data/config.yml:/config.yml:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
       - "traefik.http.routers.traefik.rule=Host(`traefik.l.wraaath.com`)"
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=wraaath:$$2y$$05$$yx8e33t5ntlDx07InNx3kOtNesOrRrIpMZOzBz2noiwdko5ojG2Dm" # See Traefik README
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"

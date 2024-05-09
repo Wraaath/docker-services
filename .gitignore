@@ -6,37 +6,30 @@
 
 # traefik/
 /traefik/data/*
-!/traefik/data/traefik.yml
+/traefik/data/traefik.yml
+/traefik/data/config.yml
 
 # vaultwarden/
+/vaultwarden/docker-compose.yml
 /vaultwarden/data/*
 
-# qbittorrent-vpn/
-/qbittorrent-vpn/config/*
-/qbittorrent-vpn/theme/*
-/qbittorrent-vpn/config/qBittorrent/config/categories.json
-!/qbittorrent-vpn/config/perms.txt
-!/qbittorrent-vpn/config/wireguard/wg0.conf.example
-!/qbittorrent-vpn/config/qBittorrent/config/qBittorrent.conf
+# qbittorrent-gluetun/
+/qbittorrent-gluetun/config/*
+/qbittorrent-gluetun/data/*
+/qbittorrent-gluetun/theme/*
 
-# papermc-server/
-/fabricmc-server/data/*
-!/fabricmc-server/data/SP
+# fabricmc-server/
+/fabricmc-server/data/SP/*
 
 # homeassistant/
 /homeassistant/config/*
 !/homeassistant/config/configuration.yaml
 !/homeassistant/config/automations.yaml
 
-# jdownloader/
-/jdownloader/config/*
-
 # searxng/
 /searxng/config/*
+/searxng/data/*
 # TODO: actually figure out what can be pushed
-
-# authelia/
-/authelia/config/*
 
 # uptimekuma/
 /uptimekuma/data/*
@@ -44,8 +37,8 @@
 # wgeasy-pihole-unbound/
 /wgeasy-pihole-unbound/config
 
-# cloudflare-ddns
+# cloudflare-ddns/
 /cloudflare-ddns/config/config.json
 
-# vscodium
+# vscodium/
 /vscodium/config

@@ -4,7 +4,7 @@ services:
   uptimekuma:
     container_name: uptimekuma
     hostname: uptimekuma.local
-    image: louislam/uptime-kuma:1.23.11-debian
+    image: louislam/uptime-kuma:1.23.13-debian
     env_file: .env
     restart: unless-stopped
     security_opt:
