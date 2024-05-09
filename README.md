@@ -6,19 +6,18 @@ This mf is very much a work in progress, so don't judge too hard.
 
 # 📚 Sections
 * [.template](.template/)
-* [Authelia](authelia/)
 * [Cloudflare DDNS](cloudflare-ddns/)
+* [FabricMC Server](fabricmc-server/)
 * [HomeAssistant](homeassistant/)
-* [JDownloader](jdownloader/)
 * [Jellyfin Bot](jellyfin-bot/)
 * [Nextcloud AIO](nextcloud-aio/)
-* [FabricMC Server](fabricmc-server/)
-* [qBittorrent VPN](qbittorrent-vpn/)
+* [qBittorrent + Gluetun](qbittorrent-gluetun/)
 * [SearXNG](searxng/)
 * [Tor Bridge](tor-bridge/)
 * [Traefik](traefik/)
 * [UptimeKuma](uptimekuma/)
 * [Vaultwarden](vaultwarden/)
+* [VSCodium](vscodium/)
 * [Website](website/)
 * [WGEasy + Pihole + Unbound](wgeasy-pihole-unbound/)
 
