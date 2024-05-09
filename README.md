@@ -4,7 +4,7 @@
 These are the services and applications running in my Homelab. \
 This mf is very much a work in progress, so don't judge too hard.
 
-# 📚 Sections
+# 📚 Services
 * [.template](.template/)
 * [Cloudflare DDNS](cloudflare-ddns/)
 * [FabricMC Server](fabricmc-server/)
@@ -22,34 +22,12 @@ This mf is very much a work in progress, so don't judge too hard.
 * [WGEasy + Pihole + Unbound](wgeasy-pihole-unbound/)
 
 # 🚀 Deployment
-1. Make sure you have Docker/docker-compose installed
-See my [Ubuntu guide](https://github.com/wraaath-homelab/docker-services/wiki/Docker#ubuntu-install-compose-v2) or [Raspberry Pi OS guide](https://github.com/wraaath-homelab/docker-services/wiki/Docker#raspberry-pi-os-install-compose-v2)
-
-2. Clone the repo:
-```bash
-git clone https://github.com/wraaath-homelab/docker-services.git
-```
-
-3. Edit the `.env`-files accordingly. Do something like:
-```bash
-cp .env.example .env
-vim .env
-```
-
-4. Create the `proxy` network for Traefik, Authelia etc...
-```bash
-sudo docker network create proxy
-```
-
-5. Deploy the Docker-container from the compose file:
-```bash
-sudo docker compose up -d
-```
-
----
+Please see [the Wiki](https://github.com/Wraaath/docker-services/wiki#-deployment)
 
 ## Problems?
 * Read the `<service>/README.md`
+
+* See the [Wiki](https://github.com/Wraaath/docker-services/wiki)
 
 * Check the logs:
 ```bash
