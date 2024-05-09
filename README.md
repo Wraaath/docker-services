@@ -5,7 +5,7 @@ These are the services and applications running in my Homelab. \
 This mf is very much a work in progress, so don't judge too hard.
 
 # 📚 Services
-* [.template](.template/)
+* [Template](.template/)
 * [Cloudflare DDNS](cloudflare-ddns/)
 * [FabricMC Server](fabricmc-server/)
 * [HomeAssistant](homeassistant/)
