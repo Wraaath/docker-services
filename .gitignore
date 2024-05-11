@@ -19,7 +19,7 @@
 /qbittorrent-gluetun/theme/*
 
 # fabricmc-server/
-/fabricmc-server/data/SP/*
+/fabricmc-server/data/*
 
 # homeassistant/
 /homeassistant/config/*
