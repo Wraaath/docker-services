@@ -4,7 +4,7 @@ services:
   jellyfin-bot:
     container_name: jellyfin-bot
     hostname: jellyfin-bot.local
-    image: ghcr.io/manuel-rw/jellyfin-discord-music-bot@sha256:3db40815a3b67f945f670acd53072ce3f3efca1b86bfb00bffa090bb5ff3abcd
+    image: ghcr.io/manuel-rw/jellyfin-discord-music-bot@sha256:a8434cc3c58ace03dccb239594ad4f0013114cca569fd5d1d0885c8e73a5dc61
     env_file: .env
     restart: unless-stopped
     security_opt:
