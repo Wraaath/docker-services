@@ -4,7 +4,7 @@ services:
   fabricmc-server:
     container_name: fabricmc-server
     hostname: fabricmc-server.local
-    image: docker.io/itzg/minecraft-server:java17
+    image: docker.io/itzg/minecraft-server:java20
     env_file: .env
     restart: unless-stopped
     security_opt:
@@ -18,8 +18,9 @@ services:
         EULA: "TRUE"
         VERSION: 1.20.4
         TYPE: "FABRIC"
-        FABRIC_LAUNCHER_VERSION: 1.0.0
-        FABRIC_LOADER_VERSION: 0.15.7
+        FABRIC_LAUNCHER_VERSION: 1.0.1
+        FABRIC_LOADER_VERSION: 0.15.11
+        MAX_MEMORY: 8G
     volumes:
       - ./data:/data:rw
     ports:
