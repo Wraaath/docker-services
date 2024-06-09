@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   gluetun:
-    image: qmcgaw/gluetun:latest
+    image: docker.io/qmcgaw/gluetun:v3.37
     container_name: gluetun
     restart: unless-stopped
     cap_add:
@@ -24,7 +24,7 @@ services:
       - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/16 # Internal network
 
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
+    image: docker.io/linuxserver/qbittorrent:4.6.5
     container_name: qbittorrent
     restart: unless-stopped
     network_mode: "service:gluetun"

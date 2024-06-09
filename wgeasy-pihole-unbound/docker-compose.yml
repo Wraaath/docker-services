@@ -32,7 +32,7 @@ services:
     container_name: pihole-unbound
     hostname: pihole
     domainname: pihole.local
-    image: rlabinc/pihole-unbound:2024.05.0-1.20.0
+    image: docker.io/rlabinc/pihole-unbound:2024.05.0-1.20.0
     env_file: .env
     restart: unless-stopped
     environment:
