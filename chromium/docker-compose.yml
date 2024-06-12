@@ -1,0 +1,20 @@
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:version-981a397a
+    container_name: chromium
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Copenhagen
+      - CHROME_CLI=https://www.linuxserver.io/ #optional
+      - CUSTOM_PORT=3004
+      - CUSTOM_HTTPS_PORT=3005
+    volumes:
+      - ./config:/config
+    ports:
+      - 3004:3004
+      - 3005:3005
+    shm_size: "2gb"
+    restart: unless-stopped
