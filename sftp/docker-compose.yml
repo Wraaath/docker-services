@@ -1,0 +1,22 @@
+version: '3'
+services:
+  sftp:
+    image: atmoz/sftp:alpine-3.7
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      # Mount users file as read-only
+      - ./config/users.conf:/etc/sftp/users.conf:ro
+
+      # Mount media dirs as read-only
+      - /mnt/truenas-nfs/Videos/Shows:/media/Videos/Shows:ro
+      - /mnt/truenas-nfs/Videos/Movies:/media/Movies:ro
+      - /mnt/truenas-nfs/Audio/Music:/media/Music:ro
+
+      # Persistently mount the Watch-later dirs
+      - ./config/Watch-later:/home/:rw
+
+      # Mount the custom bindmount script
+      - ./config/bindmount.sh:/etc/sftp.d/bindmount.sh:ro
+    ports:
+      - "2222:22"

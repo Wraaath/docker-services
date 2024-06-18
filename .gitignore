@@ -45,3 +45,7 @@
 
 # chromium/
 /chromium/config
+
+# sftp/
+/sftp/config/Watch-later
+/sftp/config/users.conf
