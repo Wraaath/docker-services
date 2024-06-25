@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   gluetun:
-    image: docker.io/qmcgaw/gluetun:v3.37
+    image: docker.io/qmcgaw/gluetun:v3.38
     container_name: gluetun
     restart: unless-stopped
     cap_add:
