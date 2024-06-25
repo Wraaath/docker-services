@@ -13,10 +13,10 @@
 /vaultwarden/docker-compose.yml
 /vaultwarden/data/*
 
-# qbittorrent-gluetun/
-/qbittorrent-gluetun/config/*
-/qbittorrent-gluetun/data/*
-/qbittorrent-gluetun/theme/*
+# qbittorrent-jackett-gluetun/
+/qbittorrent-jackett-gluetun/config/*
+/qbittorrent-jackett-gluetun/data/*
+/qbittorrent-jackett-gluetun/theme/*
 
 # fabricmc-server/
 /fabricmc-server/data/*
