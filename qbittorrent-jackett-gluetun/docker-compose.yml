@@ -25,7 +25,7 @@ services:
       - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/16 # Internal network
 
   qbittorrent:
-    image: docker.io/linuxserver/qbittorrent:4.6.5
+    image: docker.io/linuxserver/qbittorrent:20.04.1
     container_name: qbittorrent
     restart: unless-stopped
     network_mode: "service:gluetun"
