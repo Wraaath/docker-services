@@ -4,7 +4,7 @@ services:
   homeassistant:
     container_name: homeassistant
     hostname: homeassistant.local
-    image: lscr.io/linuxserver/homeassistant:2024.5.5
+    image: lscr.io/linuxserver/homeassistant:2024.7.0
     env_file: .env
     restart: unless-stopped
     security_opt:
