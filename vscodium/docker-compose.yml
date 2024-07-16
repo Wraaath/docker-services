@@ -4,7 +4,7 @@ services:
   vscodium:
     container_name: vscodium
     hostname: vscodium.local
-    image: docker.io/linuxserver/vscodium:1.90.2
+    image: docker.io/linuxserver/vscodium:1.91.1
     env_file: .env
     restart: unless-stopped
     cap_add:
