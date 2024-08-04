@@ -49,3 +49,6 @@
 # sftp/
 /sftp/config/Watch-later
 /sftp/config/users.conf
+
+# jdownloader/
+/jdownloader/config/*
