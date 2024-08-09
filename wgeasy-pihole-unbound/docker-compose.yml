@@ -4,7 +4,7 @@ services:
   wgeasy:
     container_name: wgeasy
     hostname: wgeasy
-    image: ghcr.io/wg-easy/wg-easy:13
+    image: ghcr.io/wg-easy/wg-easy:14
     env_file: .env
     restart: unless-stopped
     environment:
