@@ -4,7 +4,7 @@ services:
   cloudflare-ddns:
     container_name: cloudflare-ddns
     hostname: cloudflare-ddns.local
-    image: docker.io/timothyjmiller/cloudflare-ddns@sha256:197aaf6facf0beb4bd14613e295ad8ea0bc19f89d5bd9d619e4ac3796610b16d
+    image: docker.io/timothyjmiller/cloudflare-ddns@sha256:f6f6d05ca31975a616613402ba2d86db76a91ec65fab82be2036cf407b43634e
     env_file: .env
     restart: unless-stopped
     security_opt:
